@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title=title
+  body
+    h1 Form
+
+    form(action="/form", method="post")
+      label(for='username') Username: 
+      input(type="text" name="username")
+      br
+      br
+      label(for='password') Password: 
+      input(type="password" name="password")
+      br
+      br
+      label(for='gender') Gender: 
+      br
+      label(for="male") Male 
+      input(type="radio" name="gender" value="male")#male
+      label(for="female") Female 
+      input(type="radio" name="gender" value="female")#female
+      label(for="other") Other 
+      input(type="radio" name="gender" value="other")#other
+      br
+      br
+      label(for='agree') Agree to Terms of Service:
+      br
+      label(for="agree") Ok 
+      input(type="checkbox" name="agree" checked=true && 'checked')#agree
+      br
+      br
+      button(type="submit") Submit
