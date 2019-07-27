@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 let todoList = require("./todos");
-let todo_id = 0;
+let todoId = 0;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -19,8 +19,8 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     let todo = req.body;
-    todo.todoId = todo_id;
-    todo_id++;
+    todo.todoId = todoId;
+    todoId++;
     todoList.push(todo);
     res.render("todos", { todoList });
     res.end();

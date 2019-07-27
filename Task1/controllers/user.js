@@ -1,5 +1,5 @@
-let users = require("../users");
+const users = require("../users");
 
-module.exports.getData = (req, res)=>{
+exports.getData = (req, res)=>{
     res.send(users);
 };

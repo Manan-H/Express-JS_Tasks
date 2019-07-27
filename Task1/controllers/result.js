@@ -1,6 +1,6 @@
-let users = require("../users");
+const users = require("../users");
 
-module.exports.getData = (req, res)=>{
+exports.getData = (req, res)=>{
     let user = users.find((user) => {
         return user.userId === "123";
     })
