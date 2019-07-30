@@ -53,8 +53,8 @@ app.get('/edit/:id', (req, res) => {
 })
 
 
-app.put('/edit/:id', (req, res) => {
-    todoList.findByIdAndUpdate(id, {todoTitle: req.body.todoTitle}, {new: true},  (err, todo) => {
+app.post('/edit/:id', (req, res) => {
+    todoList.findByIdAndUpdate(req.params.id, {todoTitle: req.body.todoTitle}, {new: true}, (err, todo) => {
             if (err) return res.status(500).send(err);
             return res.redirect('/');
         })

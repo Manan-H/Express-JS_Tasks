@@ -7,7 +7,7 @@ html(lang="en")
     title
   body
     h1 Edit TODO
-    form(action="/", method="post")
+    form(action="", method="post")
       label(for='todo') Edit TODO: 
-      input(type="todo" name="todoTitle" placeholder=`${todo.todoTitle}` required)
+      input(type="todo" name="todoTitle" placeholder=`${todo[0].todoTitle}` required)
       button(type="submit") Submit 
