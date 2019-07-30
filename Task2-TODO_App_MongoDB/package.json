@@ -1,0 +1,20 @@
+{
+  "name": "Task2-TODO_App",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "pug": "^2.0.4"
+  },
+  "dependencies": {
+    "mongoose": "^5.6.7"
+  }
+}

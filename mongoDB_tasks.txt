@@ -1,0 +1,78 @@
+-Create a database with the users of the following collection, tasks. 
+-Task schema ({_id, title, text, completed, created, updated}
+
+use usersDB
+
+db.tasks.insertMany([
+  {
+  title: 'mongoDB task',
+  text: 'create database',
+  completed: true,
+  created: true,
+  updated: false,
+  user_Id: 5d3f496c24780ec402a98655
+  }
+...etc
+])
+
+-Create an insert user script
+
+db.users.insertMany([
+  {
+    username: 'John_Smith',
+    password: 'password',
+    age: 25,
+    gender: male
+  },
+...etc
+
+])
+
+
+- Create update user's name script for given _id
+
+db.users.updateOne(
+   { _id: 5d3f496c24780ec402a98655 },
+   {
+     $set: { "username": "Jack_Nicholson" }
+   }
+)
+
+
+- Create get all users script (retrieving the only username) and sorted by username
+
+db.users.find({}, {username: 1, _id: 0, password: 0, age: 0, gender: 0}).sort( { username: 1 } )  //or -1 decrement
+
+
+- Create a script that returns only female users
+
+db.users.find( { "gender": "female" } )
+
+
+- Create a script to update all tasks completed = false
+
+db.tasks.updateMany({}, {$set: {completed: false}})
+
+
+- Create a script to delete all completed=true tasks
+
+db.tasks.deleteMany({ completed : true })
+
+
+- Create a script to get all tasks of user sorted by created date that are not completed.
+
+db.tasks.find( { "user_Id": 5d3f496c24780ec402a98655, "completed": false } ).sort({ "date" : -1 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
