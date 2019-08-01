@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+<body>
+
+<div id="root"></div>
+
+
+<script>
+const root = document.querySelector("#root");
+
+const state = {
+    input: "",
+    data: [],
+    editPlcholder: "",
+    editInput: "",
+    index: 0
+}
+
+const Btn = () => `<button onclick="addTodo()">Add</button>`;
+const Input = (value) => `<input type="text" value="${value}" oninput="getInputValue(event)">`;
+const Todos = (data) => {
+    const listTodos = data.map((todo,index) => ListTodos(todo,index));
+    return `
+        <ul>
+          ${listTodos.join('')}
+        </ul>
+      `;
+};
+const editPanel = (value, placeholder) => {
+    return `
+    <div class = "hidePanel"> 
+        <input type="text" value="${value}" placeholder="${placeholder}" oninput="getEditedTodo(event)">
+        <button onclick="saveEditedTodo(event)">Save Changes</button>
+    </div>
+    `
+} 
+
+
+const ListTodos = (todo,index) => {
+    return `
+    <li>
+        ${todo}
+        <button onclick = "editTodo(${index})">Edit</button>
+        <button onclick = "deleteTodo(${index})">Delete</button>
+    </li>
+`};
+
+
+function render(state, target) {
+    target.innerHTML = `
+      ${Todos(state.data)}
+      ${Input(state.input)}
+      ${Btn()}
+    `;
+}
+
+function renderEdit(state, target) {
+    target.innerHTML = `
+      ${editPanel(state.editInput, state.editPlcholder)}
+    `;
+}
+
+function addTodo() {
+    state.data.push(state.input);
+    state.input = '';
+    render(state, root);
+}
+
+function editTodo(index){
+    state.editPlcholder = state.data[index];
+    state.index = index;
+    renderEdit(state,root);
+}
+
+function getEditedTodo(event) {
+    state.editInput = event.target.value;
+}
+
+function saveEditedTodo(){
+    state.data[state.index] = state.editInput;
+    state.editInput = "";
+    render(state, root);
+}
+
+function getInputValue(event) {
+    state.input = event.target.value;
+}
+
+function deleteTodo(index){
+    state.data.splice(index, 1);
+    render(state, root);
+}
+
+fetch('https://jsonplaceholder.typicode.com/todos')
+    .then((res) => res.json())
+    .then((data) => {
+        state.data = [...state.data, ...data.map((todo) => todo.title)];
+        render(state, root);
+    });
+
+render(state, root);
+</script>
+</body>
+</html>
